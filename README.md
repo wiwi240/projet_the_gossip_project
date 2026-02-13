@@ -1,24 +1,30 @@
-# README
+File: the_gossip_project/README.md
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Markdown
 
-Things you may want to cover:
+# The Gossip Project - Social Network Backend
 
-* Ruby version
+A complex backend structure for a social platform featuring users, gossips, tags, and private messaging.
 
-* System dependencies
+### Database Schema
+* **Users**: Profile information (name, email, age) linked to a city.
+* **Gossips**: Written by users. Can be categorized using multiple tags.
+* **Tags**: Labels that can be attached to multiple gossips via a join table.
+* **Private Messages**: Features a complex messaging system where a user (sender) can send a message to one or multiple recipients through a join table.
+* **Cities**: Organizes users by their geographic location.
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+### Key Technical Features
+* Use of **Custom Class Names** for messaging relations (`sender`, `recipient`).
+* Many-to-Many associations for Tags and Messages.
+* SQLite-compatible migrations using `integer` instead of `references` for renamed associations.
 
-* How to run the test suite
+### Setup
+1. `bundle install`
+2. `rails db:migrate`
+3. `rails db:seed`
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Data Visualization
+To see the messaging system in action, run `rails c` and use:
+`tp JoinTableMessageRecipient.all, "private_message.id", "recipient.first_name"`
